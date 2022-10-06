@@ -60,10 +60,11 @@ submet.onclick = function(){
     dataPro.push(newPro);
     //    localStorge take jest string that´s why we change value to string.
     localStorage.setItem('product', JSON.stringify(dataPro));
-    console.log(dataPro);
+    //console.log(dataPro);
 
     //clear inputs
-    clearData();    
+    clearData(); 
+    showData();   
 
 
 }
@@ -81,6 +82,34 @@ function clearData(){
     total.innerHTML='';         
 }
 //read
+function showData(){
+
+    let table = '';
+    for (let i = 0; i < dataPro.length; i++) {
+         table +=
+         `<tr>
+         <td>${i}</td>
+         <td>${dataPro[i].title}</td>
+         <td>${dataPro[i].parce}</td>
+         <td>${dataPro[i].taxes}</td>
+         <td>${dataPro[i].ads}</td>
+         <td>${dataPro[i].discount}</td>
+         <td>${dataPro[i].total}</td>
+         <td>${dataPro[i].category}</td>
+         <td><button id="update">update</button></td>
+         <td><button id="delete">delete</button></td>
+         </tr>`
+         //console.log(table);    
+        
+    }
+
+     document.getElementById('tbody').innerHTML = table;
+
+
+}
+showData();   
+
+
 //count 
 //delete 
 //update
