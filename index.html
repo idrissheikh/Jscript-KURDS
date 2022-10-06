@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-        <title id =1>Maked by Idris</title>
         <meta charset="UTF-8">
 
        
@@ -15,12 +14,14 @@
                 <p> Product Management Stytsem</p>
             </div>
             <div class="inputs">
+                <input type='text'  id="title" placeholder="title">
+
                 <div class="price">
-                    <input type='number'  id="price" placeholder="price">
-                    <input type="number"  id="taxes" placeholder="taxes">
-                    <input type="number"  id="ads" placeholder="ads">
-                    <input type="number"  id="discount" placeholder="discount">
-                    <small id="total">3231223</small>
+                    <input type="number" id="price" placeholder="price">
+                    <input id="taxes" onkeyup="getTotal()" type="number"  placeholder="taxes">
+                    <input id="ads" onkeyup="getTotal()" type="number"  placeholder="ads">
+                    <input id="discount" onkeyup="getTotal()" type="number"  placeholder="discount">
+                    <small id="total"></small>
                     
                 </div>
             

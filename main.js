@@ -1,0 +1,87 @@
+let title = document.getElementById('title');
+let price = document.getElementById('price');
+let taxes =document.getElementById('taxes');
+let ads =document.getElementById('ads');
+let discount =document.getElementById('discount');
+let total =document.getElementById('total');
+let count =document.getElementById('count');
+let category =document.getElementById('category');
+let submet =document.getElementById('submet');
+
+
+console.log(typeof +taxes.value);
+console.log(typeof ads.value);  
+console.log(typeof +price.value);
+
+
+
+
+
+
+
+//get total
+function getTotal(){
+
+    if(price.value != ''){
+        //change value to number by adding + 
+        let result = (+price.value +  +taxes.value +  +ads.value ) - +discount.value;
+        total.innerHTML= result;
+    }
+}
+
+
+
+//create prudoct
+//save localsotrge
+
+let dataPro;
+if(localStorage.product != null){
+    //change data to  arry
+    dataPro = JSON.parse(localStorage.product);
+}else{
+let dataPro =[];  
+}
+
+// let dataPro =[]; 
+submet.onclick = function(){
+    //create newo opject
+    let newPro ={
+        title: title.value,
+        price: price.value,
+        taxes:taxes.value,
+        discount:discount.value,
+        ads: ads.value,
+        count: count.value,
+        category: category.value,
+    }
+    // push nyopject av data i arry datapro();
+    
+    //save localsotrge
+    dataPro.push(newPro);
+    //    localStorge take jest string that´s why we change value to string.
+    localStorage.setItem('product', JSON.stringify(dataPro));
+    console.log(dataPro);
+
+    //clear inputs
+    clearData();    
+
+
+}
+
+
+//clear inputs 
+function clearData(){
+    title.value = '';
+    price.value ='';
+    taxes.value ='';
+    discount.value='';
+    ads.value='';
+    count.value='';
+    category.value='';
+    total.innerHTML='';         
+}
+//read
+//count 
+//delete 
+//update
+//search

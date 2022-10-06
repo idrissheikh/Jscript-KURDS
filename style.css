@@ -39,9 +39,11 @@ input:focus{
 }
 #total{
     background-color: brown;
-    padding: 5px 3px;
+    padding: 4px 3px;
     border-radius: 6px;
     width:auto;
+    margin-right:5px;
+
 }   
 #total::before{
     content: 'Total: ';
