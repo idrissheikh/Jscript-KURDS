@@ -9,6 +9,9 @@ let category =document.getElementById('category');
 let submet =document.getElementById('submet');
 
 
+let mood ='create'
+let tmp;
+
 console.log(typeof +taxes.value);
 console.log(typeof ads.value);  
 console.log(typeof +price.value);
@@ -56,14 +59,23 @@ submet.onclick = function(){
         total:total.innerHTML,
     }
 
-    if(newPro.count > 1){
-        for (let i = 0; i < newPro.count; i++) {
-            dataPro.push(newPro);
-            }
-        }else{
-            dataPro.push(newPro);
-        
+    if(mood === 'create'){
+        if(newPro.count > 1){
+            for (let i = 0; i < newPro.count; i++) {
+                dataPro.push(newPro);
+                }
+            }else{
+                dataPro.push(newPro);
+            
+        }
+
+    } else{
+        dataPro[tmp] =newPro;
+        mood = 'create';
+        submet.innerHTML = 'Create';
+        count.style.display ='block';
     }
+    
     // push nyopject av data i arry datapro();
     //save localsotrge
     //dataPro.push(newPro);
@@ -94,6 +106,7 @@ function clearData(){
 }
 //read
 function showData(){
+    getTotal();
     let table = '';
     for (let i = 0; i < dataPro.length; i++) {
          table +=
@@ -106,7 +119,7 @@ function showData(){
          <td>${dataPro[i].discount}</td>
          <td>${dataPro[i].total}</td>
          <td>${dataPro[i].category}</td>
-         <td><button id="update">update</button></td>
+         <td><button onclick=updateData(${i}) id="update">update</button></td>
          <td><button onclick='deleteData(${i})' id="delete">delete</button></td>
          </tr>`
          //console.log(table);     
@@ -146,4 +159,23 @@ function deleteAll(){
 
 
 //update
+function updateData(i){
+    //console.log( 'hallo funker ' + i );
+    title.value = dataPro[i].title;
+    price.value = dataPro[i].price;
+    taxes.value =dataPro[i].taxes;
+    discount.value=dataPro[i].discount;
+    ads.value=dataPro[i].ads;
+    count.style.display = 'none'
+    category.value= dataPro[i].category;
+    getTotal();
+    submet.innerHTML = 'Update'
+    mood = 'update';
+    tmp = i;
+    scroll({
+        top: 0,
+        behavior: 'smooth'
+    }
+    )
+}
 //search
