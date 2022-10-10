@@ -42,7 +42,7 @@ if(localStorage.product != null){
 let dataPro =[];  
 }
 
-// let dataPro =[]; 
+//let dataPro =[]; 
 submet.onclick = function(){
     //create newo opject
     let newPro ={
@@ -53,18 +53,29 @@ submet.onclick = function(){
         ads: ads.value,
         count: count.value,
         category: category.value,
+        total:total.innerHTML,
+    }
+
+    if(newPro.count > 1){
+        for (let i = 0; i < newPro.count; i++) {
+            dataPro.push(newPro);
+            }
+        }else{
+            dataPro.push(newPro);
+        
     }
     // push nyopject av data i arry datapro();
-    
     //save localsotrge
-    dataPro.push(newPro);
+    //dataPro.push(newPro);
     //    localStorge take jest string that´s why we change value to string.
     localStorage.setItem('product', JSON.stringify(dataPro));
     //console.log(dataPro);
 
     //clear inputs
-    clearData(); 
-    showData();   
+    clearData();
+    showData();
+    
+     
 
 
 }
@@ -83,34 +94,56 @@ function clearData(){
 }
 //read
 function showData(){
-
     let table = '';
     for (let i = 0; i < dataPro.length; i++) {
          table +=
          `<tr>
          <td>${i}</td>
          <td>${dataPro[i].title}</td>
-         <td>${dataPro[i].parce}</td>
+         <td>${dataPro[i].price}</td>
          <td>${dataPro[i].taxes}</td>
          <td>${dataPro[i].ads}</td>
          <td>${dataPro[i].discount}</td>
          <td>${dataPro[i].total}</td>
          <td>${dataPro[i].category}</td>
          <td><button id="update">update</button></td>
-         <td><button id="delete">delete</button></td>
+         <td><button onclick='deleteData(${i})' id="delete">delete</button></td>
          </tr>`
-         //console.log(table);    
-        
+         //console.log(table);     
     }
 
      document.getElementById('tbody').innerHTML = table;
+     let btnDelete =document.getElementById('deleteAll');
+     if(dataPro.length > 0){
+        btnDelete.innerHTML =`
+        <button onclick=deleteAll()>delete All( ${dataPro.length})</button>`
+     }else{
+        btnDelete.innerHTML = '';
+     }
 
 
+} showData();   
+
+
+
+//delete 
+function deleteData(i){
+    console.log(i);
+    dataPro.splice(i,1);
+    localStorage.product=JSON.stringify(dataPro)
+    showData();
 }
-showData();   
 
+function deleteAll(){
+    localStorage.clear();
+    dataPro.splice(0);
+    showData();
+    
+}
 
 //count 
-//delete 
+
+
+
 //update
 //search
