@@ -36,10 +36,10 @@
             <div class="outouts">
                 
              <div class="searchBlock">
-                <input type="text" id="search" placeholder="search">
+                <input onkeyup="searchData(this.value)" type="text" id="search" placeholder="search">
                 <div class="btnSearsh">
-                    <button id="searchTitle"> search by title</button>
-                    <button id="searchCategory"> search by Category</button>
+                    <button onclick="getSearchMood(this.id)" id="searchTitle"> search by title</button>
+                    <button  onclick="getSearchMood(this.id)" id="searchCategory"> search by Category</button>
 
                 </div>
 
