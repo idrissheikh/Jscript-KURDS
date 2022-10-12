@@ -17,11 +17,6 @@ console.log(typeof ads.value);
 console.log(typeof +price.value);
 
 
-
-
-
-
-
 //get total
 function getTotal(){
 
@@ -59,22 +54,27 @@ submet.onclick = function(){
         total:total.innerHTML,
     }
 
-    if(mood === 'create'){
-        if(newPro.count > 1){
-            for (let i = 0; i < newPro.count; i++) {
-                dataPro.push(newPro);
-                }
-            }else{
-                dataPro.push(newPro);
-            
-        }
+    if(title.value != '' && price.value != '' && category.value != '' && count.value <= 99){
+        if(mood === 'create'){
+            if(newPro.count > 1){
+                for (let i = 0; i < newPro.count; i++) {
+                    dataPro.push(newPro);
+                    }
+                }else{
+                    dataPro.push(newPro);
 
-    } else{
-        dataPro[tmp] =newPro;
-        mood = 'create';
-        submet.innerHTML = 'Create';
-        count.style.display ='block';
-    }
+                
+            }
+    
+        } else{
+            dataPro[tmp] =newPro;
+            mood = 'create';
+            submet.innerHTML = 'Create';
+            count.style.display ='block';
+        }    clearData();
+
+    } else window.alert('det er noe på input');
+    
     
     // push nyopject av data i arry datapro();
     //save localsotrge
@@ -84,7 +84,6 @@ submet.onclick = function(){
     //console.log(dataPro);
 
     //clear inputs
-    clearData();
     showData();
     
      
@@ -104,6 +103,7 @@ function clearData(){
     category.value='';
     total.innerHTML='';         
 }
+
 //read
 function showData(){
     getTotal();
@@ -111,7 +111,7 @@ function showData(){
     for (let i = 0; i < dataPro.length; i++) {
          table +=
          `<tr>
-         <td>${i}</td>
+         <td>${i+1}</td>
          <td>${dataPro[i].title}</td>
          <td>${dataPro[i].price}</td>
          <td>${dataPro[i].taxes}</td>
@@ -138,7 +138,6 @@ function showData(){
 } showData();   
 
 
-
 //delete 
 function deleteData(i){
     console.log(i);
@@ -155,8 +154,6 @@ function deleteAll(){
 }
 
 //count 
-
-
 
 //update
 function updateData(i){
